@@ -1,0 +1,46 @@
+<div class="container mt-5 d-flex align-items-center justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-lg border-0 rounded-lg">
+            <div class="card-header bg-secondary-subtle py-2">
+                <h3 class="text-center mb-0">Login</h3>
+            </div>
+            <div class="card-body p-5">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-4">
+                        <label for="username">Usuario</label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="username" 
+                               formControlName="username"
+                               placeholder="Usuario"
+                               [ngClass]="{'is-invalid': loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)}">
+                        <div class="invalid-feedback" *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+                            <span *ngIf="loginForm.get('username')?.errors?.['required']">El usuario es obligatorio</span>
+                            <span *ngIf="loginForm.get('username')?.errors?.['minlength']">El usuario debe tener al menos 3 caracteres</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password">Contraseña</label>
+                        <input type="password" 
+                               class="form-control" 
+                               id="password" 
+                               formControlName="password"
+                               placeholder="Contraseña"
+                               [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)}">
+                        <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                            <span *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria</span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="loginForm.invalid">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
